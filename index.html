@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS Career Roadmaps</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f5f6fa;
+      color: #2c3e50;
+    }
+
+    /* Navbar */
+    nav {
+      background: #2c3e50;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav h2 {
+      color: white;
+      margin: 0;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+    }
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    nav ul li a:hover {
+      text-decoration: underline;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, #2c3e50, #34495e);
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Container */
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+      padding: 2rem 0;
+    }
+
+    h2 {
+      margin-bottom: 1rem;
+      font-weight: 600;
+      color: #34495e;
+      text-align: center;
+    }
+
+    /* Offset sections for sticky navbar */
+    #about, #career, #projects, #contact {
+      scroll-margin-top: 100px;
+    }
+
+    /* Search bar */
+    .search-bar {
+      margin: 1rem 0;
+      text-align: center;
+    }
+    .search-bar input {
+      padding: 0.7rem;
+      width: 90%;
+      max-width: 400px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    /* Career Cards Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+    .card i {
+      font-size: 60px;
+      margin-bottom: 0.5rem;
+      color: #2980b9;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+    }
+    .card a {
+      display: inline-block;
+      margin-top: 10px;
+      color: #00bcd4;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .card a:hover {
+      text-decoration: underline;
+    }
+
+    /* Roadmap Section */
+    .roadmap {
+      display: none; /* hidden initially */
+      margin-top: 2rem;
+      padding: 1rem;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+    details {
+      margin: 0.7rem 0;
+      background: #ecf0f1;
+      padding: 0.8rem 1rem;
+      border-radius: 8px;
+    }
+    summary {
+      font-weight: 600;
+      cursor: pointer;
+      color: #2c3e50;
+    }
+
+    /* About Section */
+    .about {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background: #ecf0f1;
+      border-radius: 12px;
+    }
+
+    /* Projects / Portfolio List Styling */
+    .project-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .project-item {
+      background: #ecf0f1;
+      padding: 1rem 1.2rem;
+      border-radius: 10px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    .project-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    .project-item a {
+      color: #2980b9;
+      text-decoration: none;
+      margin-left: 0.3rem;
+    }
+    .project-item a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, #2c3e50, #34495e);
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+    }
+    /* ===========================
+   Mobile Responsive Styles
+=========================== */
+@media (max-width: 768px) {
+
+  /* Navbar: stack links vertically */
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 0.7rem;
+    width: 100%;
+  }
+
+  nav ul li a {
+    display: block;
+    padding: 0.5rem 0;
+  }
+
+  /* Header: smaller fonts */
+  header h1 {
+    font-size: 1.5rem;
+  }
+  header p {
+    font-size: 0.9rem;
+  }
+
+  /* Search bar: full width */
+  .search-bar input {
+    width: 100%;
+  }
+
+  /* Career cards: stack vertically */
+  .grid {
+    grid-template-columns: 1fr; /* single column */
+    gap: 1rem;
+  }
+
+  .card i {
+    font-size: 50px;
+  }
+
+  /* About section: smaller text */
+  .about p {
+    font-size: 0.95rem;
+  }
+
+  /* Project items: smaller font */
+  .project-item {
+    font-size: 0.9rem;
+  }
+
+  /* Footer: smaller and padded */
+  footer {
+    font-size: 0.8rem;
+    padding: 1rem 0.5rem;
+  }
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+  <!-- Navbar -->
+  <!-- Navbar -->
+    <h2>CS Roadmaps<i class="fa-solid fa-graduation-cap"></i></h2>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#career">Career Path</a></li>
+      <li><a href="#projects">Projects / Portfolio Ideas</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Header -->
+  <header id="home">
+    <h1>Computer Science Career Roadmaps</h1>
+    <p>Explore step-by-step roadmaps for major CS career paths</p>
+  </header>
+
+  <!-- About Section -->
+  <div class="container about" id="about">
+    <h2>About This Website</h2>
+    <p>This website helps Computer Science students explore different career paths.  
+       It provides structured learning roadmaps for roles such as Data Analyst, Software Developer,  
+       Machine Learning Engineer, Cybersecurity Analyst, Cloud Engineer, UI/UX Designer, DevOps Engineer,  
+       and Database Administrator. Each roadmap contains tutorials, resources, and project ideas to guide learners.</p>
+  </div>
+
+  <!-- Career Paths Section -->
+  <div class="container" id="career">
+    <h2>Choose a Career Path</h2>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search among career paths..." onkeyup="filterCards()">
+    </div>
+
+    <!-- Grid Cards -->
+    <div class="grid" id="careerGrid">
+      <div class="card" onclick="showRoadmap('dataAnalyst')"><i class="fa-solid fa-chart-line"></i><br>Data Analyst</div>
+      <div class="card" onclick="showRoadmap('developer')"><i class="fa-solid fa-code"></i><br>Software Developer</div>
+      <div class="card" onclick="showRoadmap('mlEngineer')"><i class="fa-solid fa-robot"></i><br>Machine Learning Engineer</div>
+      <div class="card" onclick="showRoadmap('cybersecurity')"><i class="fa-solid fa-shield-halved"></i><br>Cybersecurity Analyst</div>
+      <div class="card" onclick="showRoadmap('cloud')"><i class="fa-solid fa-cloud"></i><br>Cloud Engineer</div>
+      <div class="card" onclick="showRoadmap('uiux')"><i class="fa-solid fa-pencil-ruler"></i><br>UI/UX Designer</div>
+      <div class="card" onclick="showRoadmap('devops')"><i class="fa-solid fa-gears"></i><br>DevOps Engineer</div>
+      <div class="card" onclick="showRoadmap('database')"><i class="fa-solid fa-database"></i><br>Database Administrator</div>
+    </div>
+
+    <!-- Roadmap -->
+    <div id="roadmaps" class="roadmap"></div>
+  </div>
+
+  <!-- Projects / Portfolio Section -->
+  <div class="container" id="projects">
+    <h2>Projects / Portfolio Ideas</h2>
+
+    <div class="project-list">
+      <div class="project-item">
+        <strong>Data Analyst:</strong> Sales Dashboard, Customer Segmentation, Predictive Analytics
+        (<a href="https://www.google.com/search?q=data+analyst+project+ideas" target="_blank">Google Search</a>)
+      </div>
+
+      <div class="project-item">
+        <strong>Software Developer:</strong> Portfolio Website, Task Management App, Chat Application
+        (<a href="https://www.google.com/search?q=software+developer+project+ideas" target="_blank">Google Search</a>)
+      </div>
+
+      <div class="project-item">
+        <strong>Machine Learning Engineer:</strong> Image Classifier, Chatbot, Stock Price Prediction
+        (<a href="https://www.google.com/search?q=machine+learning+project+ideas" target="_(<a href="https://www.google.com/search?q=machine+learning+project+ideas" target="_blank">Google Search</a>)
+      </div>
+
+      <div class="project-item">
+        <strong>Cybersecurity Analyst:</strong> Penetration Testing Lab, Secure Login System, Vulnerability Scanner
+        (<a href="https://www.google.com/search?q=cybersecurity+project+ideas" target="_blank">Google Search</a>)
+      </div>
+
+      <div class="project-item">
+        <strong>Cloud Engineer:</strong> Deploy Web App on AWS, Serverless Application, Cloud Monitoring Dashboard
+        (<a href="https://www.google.com/search?q=cloud+engineering+project+ideas" target="_blank">Google Search</a>)
+      </div>
+
+      <div class="project-item">
+        <strong>UI/UX Designer:</strong> Portfolio Website, Mobile App Prototype, Redesign Existing App
+        (<a href="https://www.google.com/search?q=ui+ux+design+project+ideas" target="_blank">Google Search</a>)
+      </div>
+
+      <div class="project-item">
+        <strong>DevOps Engineer:</strong> CI/CD Pipeline, Dockerized App, Automated Deployment Scripts
+        (<a href="https://www.google.com/search?q=devops+project+ideas" target="_blank">Google Search</a>)
+      </div>
+
+      <div class="project-item">
+        <strong>Database Administrator:</strong> Inventory Management DB, Backup & Recovery System, SQL Optimization
+        (<a href="https://www.google.com/search?q=database+admin+project+ideas" target="_blank">Google Search</a>)
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer / Contact -->
+  <footer id="contact">
+    <p>&copy; 2025 CS Career Roadmaps | Built for Students</p>
+    <p>Contact: support@csroadmaps.com</p>
+  </footer>
+
+  <script>
+    // Roadmaps data
+    const roadmaps = {
+      dataAnalyst: `
+        <h2>📊 Data Analyst Roadmap</h2>
+        <details><summary>Excel</summary><p>Formulas, pivot tables, cleaning.<br>
+        📺 <a href="https://www.youtube.com/results?search_query=excel+for+beginners" target="_blank">Excel Basics</a></p></details>
+        <details><summary>SQL</summary><p>Queries, joins, aggregations.<br>
+        📺 <a href="https://www.youtube.com/results?search_query=sql+for+beginners" target="_blank">SQL Tutorial</a></p></details>
+        <details><summary>Python</summary><p>Pandas, NumPy, Matplotlib.<br>
+        📺 <a href="https://www.youtube.com/results?search_query=python+for+data+analysis" target="_blank">Python for Data Analysis</a></p></details>
+        <details><summary>Data Visualization</summary><p>Tableau / Power BI dashboards.<br>
+        📺 <a href="https://www.youtube.com/results?search_query=tableau+for+beginners" target="_blank">Tableau Basics</a></p></details>
+      `,
+      developer: `
+        <h2>💻 Software Developer Roadmap</h2>
+        <details><summary>Programming Basics</summary><p>C, C++, Java or Python.<br>
+        📺 <a href="https://www.youtube.com/results?search_query=programming+basics" target="_blank">Programming Basics</a></p></details>
+        <details><summary>Data Structures</summary><p>Arrays, stacks, queues, trees, graphs.<br>
+        📺 <a href="https://www.youtube.com/results?search_query=data+structures+and+algorithms" target="_blank">DSA Tutorials</a></p></details>
+      `,
+      mlEngineer: `
+        <h2>🤖 Machine Learning Engineer Roadmap</h2>
+        <details><summary>Python & Math</summary><p>Python, linear algebra, probability.<br>
+        📺 <a href="https://www.youtube.com/results?search_query=python+for+machine+learning" target="_blank">Python for ML</a></p></details>
+        <details><summary>ML Basics</summary><p>Regression, classification, clustering.<br>
+        📺 <a href="https://www.youtube.com/results?search_query=machine+learning+basics" target="_blank">ML Basics</a></p></details>
+        <details><summary>Deep Learning</summary><p>Neural networks, CNN, RNN.<br>
+        📺 <a href="https://www.youtube.com/results?search_query=deep+learning+tutorial" target="_blank">Deep Learning</a></p></details>
+      `,
+      cybersecurity: `
+        <h2>🛡️ Cybersecurity Analyst Roadmap</h2>
+        <details><summary>Networking Basics</summary><p>TCP/IP, firewalls, protocols.<br>
+        📺 <a href="https://www.youtube.com/results?search_query=networking+basics" target="_blank">Networking Basics</a></p></details>
+        <details><summary>Cybersecurity Fundamentals</summary><p>Malware, phishing, security principles.<br>
+        📺 <a href="https://www.youtube.com/results?search_query=cybersecurity+basics" target="_blank">Cybersecurity Basics</a></p></details>
+        <details><summary>Ethical Hacking</summary><p>Penetration testing, vulnerability scanning.<br>
+        📺 <a href="https://www.youtube.com/results?search_query=ethical+hacking+tutorial" target="_blank">Ethical Hacking</a></p></details>
+      `,
+      cloud: `
+        <h2>☁️ Cloud Engineer Roadmap</h2>
+        <details><summary>Cloud Basics</summary><p>AWS, Azure, GCP fundamentals.<br>
+        📺 <a href="https://www.youtube.com/results?search_query=cloud+computing+for+beginners" target="_blank">Cloud Basics</a></p></details>
+        <details><summary>DevOps Tools</summary><p>Docker, Kubernetes, Jenkins.<br>
+        📺 <a href="https://www.youtube.com/results?search_query=docker+kubernetes+jenkins" target="_blank">DevOps Tools</a></p></details>
+      `,
+      uiux: `
+        <h2>🎨 UI/UX Designer Roadmap</h2>
+        <details><summary>Design Basics</summary><p>Color theory, typography.<br>
+        📺 <a href="https://www.youtube.com/results?search_query=ui+ux+design+basics" target="_blank">UI/UX Basics</a></p></details>
+        <details><summary>Wireframing & Prototyping</summary><p>Figma, Adobe XD, interactive designs.<br>
+        📺 <a href="https://www.youtube.com/results?search_query=figma+tutorial+for+beginners" target="_blank">Figma Tutorial</a></p></details>
+      `,
+      devops: `
+        <h2>⚙️ DevOps Engineer Roadmap</h2>
+        <details><summary>Version Control & Automation</summary><p>Git, CI/CD pipelines, Docker, Kubernetes.<br>
+        📺 <a href="https://www.youtube.com/results?search_query=devops+tools+tutorial" target="_blank">DevOps Tutorials</a></p></details>
+      `,
+      database: `
+        <h2>🗄️ Database Administrator Roadmap</h2>
+        <details><summary>SQL & DBMS</summary><p>Relational databases, queries.<br>
+        📺 <a href="https://www.youtube.com/results?search_query=sql+for+beginners" target="_blank">SQL Tutorial</a></p></details>
+        <details><summary>Optimization & Security</summary><p>Indexing, backups, security.<br>
+        📺 <a href="https://www.youtube.com/results?search_query=database+admin+projects" target="_blank">Projects</a></p></details>
+      `
+    };
+
+    function showRoadmap(key) {
+      const roadmapDiv = document.getElementById("roadmaps");
+      roadmapDiv.innerHTML = roadmaps[key];
+      roadmapDiv.style.display = "block";
+      window.scrollTo({ top: roadmapDiv.offsetTop - 20, behavior: 'smooth' });
+    }
+
+    function filterCards() {
+      const input = document.getElementById("searchInput").value.toLowerCase();
+      const cards = document.querySelectorAll("#careerGrid .card");
+      cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        card.style.display = text.includes(input) ? "" : "none";
+      });
+    }
+  </script>
+
+</body>
+</html>
